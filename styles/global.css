@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[data-theme='dark'] :root {
+    background-color: #20212c;
+    font-family: Jakarta;
+    color: white;
+}
+
+[data-theme='light'] :root {
+    background-color: #f4f7fd;
+    font-family: Jakarta;
+    color: #000112;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
