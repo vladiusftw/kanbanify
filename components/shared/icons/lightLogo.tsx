@@ -1,6 +1,10 @@
 import React from 'react'
 
-const LightLogo = () => {
+type Props = {
+    className?: string
+}
+
+const LightLogo = ({ className }: Props) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -8,6 +12,7 @@ const LightLogo = () => {
             height="26"
             viewBox="0 0 153 26"
             fill="none"
+            className={className}
         >
             <path
                 fill-rule="evenodd"

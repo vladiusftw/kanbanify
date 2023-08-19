@@ -16,7 +16,7 @@ const BoardItem = ({ isActive, name }: Props) => {
             <Board isActive={isActive} />
             <p
                 className={`text-[15px] font-[700] whitespace-nowrap ${
-                    isActive ? '' : 'text-[#828FA3]'
+                    isActive ? 'text-white' : 'text-[#828FA3]'
                 }`}
             >
                 {name}

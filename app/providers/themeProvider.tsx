@@ -8,7 +8,11 @@ type Props = {
 
 const ThemeProvider = ({ children }: Props) => {
     return (
-        <Provider themes={['dark', 'light']} defaultTheme="light">
+        <Provider
+            themes={['dark', 'light']}
+            defaultTheme="dark"
+            attribute="class"
+        >
             {children}
         </Provider>
     )

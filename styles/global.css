@@ -2,14 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-[data-theme='dark'] :root {
+/* :root {
+    background-color: #20212c;
+    font-family: Jakarta;
+    color: white;
+} */
+
+[data-theme='dark'] {
     background-color: #20212c;
     font-family: Jakarta;
     color: white;
 }
 
-[data-theme='light'] :root {
-    background-color: #f4f7fd;
+[data-theme='light'] {
+    background-color: red;
     font-family: Jakarta;
     color: #000112;
 }
