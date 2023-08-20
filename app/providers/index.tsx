@@ -11,7 +11,13 @@ type Props = {
 const Providers = ({ children }: Props) => {
     return (
         <Provider store={store}>
-            <ThemeProvider themes={['dark', 'light']}>{children}</ThemeProvider>
+            <ThemeProvider
+                themes={['dark', 'light']}
+                defaultTheme="dark"
+                attribute="class"
+            >
+                {children}
+            </ThemeProvider>
         </Provider>
     )
 }

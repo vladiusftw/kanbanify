@@ -3,8 +3,7 @@ import '@/styles/fonts.css'
 import type { Metadata } from 'next'
 import Navbar from '@/components/layout/navbar'
 import Sidebar from '@/components/layout/sidebar'
-import ThemeProvider from './providers/themeProvider'
-import EyeShow from '@/components/shared/icons/eyeShow'
+import Providers from './providers'
 
 export const metadata: Metadata = {
     title: 'Kanbanify',
@@ -19,15 +18,15 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className="bg-white dark:bg-[#20212C] text-[#000112] dark:text-white">
-                <div className="h-screen flex flex-col w-full">
-                    <Navbar />
-                    <div className="flex h-full w-full overflow-hidden">
-                        <ThemeProvider>
+                <Providers>
+                    <div className="h-screen flex flex-col w-full">
+                        <Navbar />
+                        <div className="flex h-full w-full overflow-hidden">
                             <Sidebar />
-                        </ThemeProvider>
-                        {children}
+                            {children}
+                        </div>
                     </div>
-                </div>
+                </Providers>
             </body>
         </html>
     )
