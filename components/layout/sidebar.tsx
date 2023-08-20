@@ -21,14 +21,14 @@ const Sidebar = () => {
             <div
                 className={`fixed left-0 md:static h-full overflow-hidden ${
                     isOpen ? 'w-screen md:w-full opacity-100' : 'w-0 opacity-0'
-                } transition-[width,opacity] duration-[0.5s] ease-in-out   md:border-r-solid md:border-r-[1px] md:border-r-[#E4EBFA] dark:md:border-r-[#3E3F4E] py-[30px] lg:py-[40px] flex flex-col items-center bg-white dark:bg-[#2B2C37] `}
+                } transition-[width,opacity] duration-[0.5s] ease-in-out   md:border-r-solid md:border-r-[1px] md:border-r-[#E4EBFA] dark:md:border-r-[#3E3F4E] py-[24px] flex flex-col items-center bg-white dark:bg-[#2B2C37] `}
             >
-                <div className="flex flex-col gap-[20px] h-[83%] w-full pb-[24px]">
+                <div className="flex flex-col gap-[20px] h-full w-full pb-[24px] overflow-hidden">
                     <h2 className="uppercase text-[#828FA3] text-[12px] font-[700] ps-[34px] ">
                         {'all boards (8)'}
                     </h2>
 
-                    <div className="w-full flex flex-col gap-[12px] overflow-auto pe-[24px] ">
+                    <div className="w-full flex flex-col h-full gap-[12px] overflow-auto pe-[24px] ">
                         <BoardItem isActive name={'Platform Launch'} />
                         <BoardItem isActive={false} name={'Platform Launch'} />
                         <BoardItem isActive={false} name={'Platform Launch'} />
@@ -55,7 +55,7 @@ const Sidebar = () => {
                         <BoardItem isActive={false} name={'Platform Launch'} />
                     </div>
                 </div>
-                <div className="self-end flex flex-col w-full px-[24px]">
+                <div className="flex flex-col w-full px-[24px]">
                     <div className=" flex items-center justify-center bg-[#F4F7FD] dark:bg-[#20212C]  gap-[24px] w-full py-[14px] rounded-[6px] ">
                         <Sun />
                         {theme && (
