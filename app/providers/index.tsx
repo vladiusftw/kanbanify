@@ -1,8 +1,9 @@
 'use client'
-import store from '@/store/store'
+import store, { persistor } from '@/store/store'
 import { ThemeProvider } from 'next-themes'
 import React from 'react'
 import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
 
 type Props = {
     children: React.ReactNode
@@ -11,13 +12,15 @@ type Props = {
 const Providers = ({ children }: Props) => {
     return (
         <Provider store={store}>
-            <ThemeProvider
-                themes={['dark', 'light']}
-                defaultTheme="dark"
-                attribute="class"
-            >
-                {children}
-            </ThemeProvider>
+            <PersistGate persistor={persistor}>
+                <ThemeProvider
+                    themes={['dark', 'light']}
+                    defaultTheme="dark"
+                    attribute="class"
+                >
+                    {children}
+                </ThemeProvider>
+            </PersistGate>
         </Provider>
     )
 }

@@ -8,51 +8,53 @@ import Eye from '../shared/icons/eye'
 import { useTheme } from 'next-themes'
 import { UseThemeProps } from 'next-themes/dist/types'
 import EyeShow from '../shared/icons/eyeShow'
+import { useAppDispatch, useAppSelector } from '@/store/store'
+import { Board } from '../shared/types'
+import { useDispatch } from 'react-redux'
+import { getItems } from '@/store/slices/itemsReducer'
+import { openCreateBoard } from '@/store/slices/modalsReducer'
 
 const Sidebar = () => {
     const { theme, setTheme }: UseThemeProps = useTheme()
     const [isOpen, setIsOpen] = useState(false)
+    const { boards, currBoard } = useAppSelector(
+        (state) => state?.persistedReducer.boards
+    )
+    const dispatch = useDispatch()
     return (
         <div
-            className={`relative h-full md:max-w-[280px] lg:max-w-[300px] ${
-                isOpen ? 'w-full' : 'w-auto'
+            className={`top-0 fixed md:static h-full  overflow-hidden  transition-width duration-[0.5s] ease-linear   md:max-w-[280px] lg:max-w-[300px] ${
+                isOpen ? ' w-screen md:w-full' : ' w-0'
             } `}
         >
             <div
-                className={`fixed left-0 md:static h-full overflow-hidden ${
-                    isOpen ? 'w-screen md:w-full opacity-100' : 'w-0 opacity-0'
-                } transition-[width,opacity] duration-[0.5s] ease-in-out   md:border-r-solid md:border-r-[1px] md:border-r-[#E4EBFA] dark:md:border-r-[#3E3F4E] py-[24px] flex flex-col items-center bg-white dark:bg-[#2B2C37] `}
+                className={` h-full w-full overflow-hidden   md:border-r-solid md:border-r-[1px] md:border-r-[#E4EBFA] dark:md:border-r-[#3E3F4E] py-[24px] flex flex-col items-center bg-white dark:bg-[#2B2C37] `}
             >
                 <div className="flex flex-col gap-[20px] h-full w-full pb-[24px] overflow-hidden">
                     <h2 className="uppercase text-[#828FA3] text-[12px] font-[700] ps-[34px] ">
                         {'all boards (8)'}
                     </h2>
 
-                    <div className="w-full flex flex-col h-full gap-[12px] overflow-auto pe-[24px] ">
-                        <BoardItem isActive name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
-                        <BoardItem isActive={false} name={'Platform Launch'} />
+                    <div className="w-full flex flex-col h-full overflow-y-auto overflow-x-hidden  pe-[24px] ">
+                        {boards?.map((board: Board, index: number) => {
+                            return (
+                                <BoardItem
+                                    isActive={board?.title === currBoard}
+                                    name={board?.title}
+                                    onClick={() =>
+                                        dispatch(getItems(board?.title))
+                                    }
+                                />
+                            )
+                        })}
+                    </div>
+                    <div className="pe-[24px] w-full">
+                        <BoardItem
+                            isActive={false}
+                            name={'+ Create New Board'}
+                            isMain
+                            onClick={() => dispatch(openCreateBoard())}
+                        />
                     </div>
                 </div>
                 <div className="flex flex-col w-full px-[24px]">
@@ -72,7 +74,7 @@ const Sidebar = () => {
                         <Moon />
                     </div>
                     <button
-                        className="flex gap-[15px] items-center py-[22px]"
+                        className="flex gap-[15px] items-center py-[22px] "
                         onClick={(e) => {
                             e.preventDefault()
                             setIsOpen(false)
