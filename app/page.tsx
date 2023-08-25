@@ -1,14 +1,12 @@
 'use client'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Scrollbar } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/scrollbar'
 import { Column, ToDo } from '@/components/shared/types'
 import RenderItem from '@/components/main/renderItem'
-import { useSelector } from 'react-redux'
 import { useAppSelector } from '@/store/store'
-import CreateBoardModal from '@/components/shared/createBoardModal'
-import AddTaskModal from '@/components/shared/addTaskModal'
+import CreateBoardModal from '@/components/shared/modals/createBoardModal'
+import AddTaskModal from '@/components/shared/modals/addTaskModal'
+import ShowTaskModal from '@/components/shared/modals/showTaskModal'
 
 export default function Home() {
     const { items } = useAppSelector((state) => state?.persistedReducer.boards)
@@ -24,20 +22,41 @@ export default function Home() {
         return group
     }, {})
 
+    const sortGroups = (value1: [string, ToDo[]], value2: [string, ToDo[]]) => {
+        if (value1?.[0] === 'todo') {
+            if (value2?.[0] !== 'todo') return -1
+            else return 0
+        } else if (value1?.[0] == 'doing') {
+            if (value2?.[0] === 'todo') return 1
+            else if (value2?.[0] === 'doing') return 0
+            else return -1
+        } else {
+            if (value2?.[0] !== 'done') return 1
+            else return 0
+        }
+    }
+
     return (
         <>
             <AddTaskModal />
             <CreateBoardModal />
-            <div className=" pb-[84px] pt-[24px] w-full h-full overflow-hidden">
-                <div className="flex overflow-auto h-full">
-                    {Object.entries(groupedItems)?.map(
-                        (group: [string, ToDo[]], index: number) => {
+            <ShowTaskModal />
+            <div className=" pb-[84px] pt-[24px] w-full h-full overflow-hidden pl-[26px]">
+                <div className="flex h-full overflow-auto">
+                    {Object.entries(groupedItems)
+                        ?.sort(
+                            (
+                                value: [string, ToDo[]],
+                                value2: [string, ToDo[]]
+                            ) => sortGroups(value, value2)
+                        )
+                        .map((group: [string, ToDo[]], index: number) => {
                             return (
                                 <div
                                     key={index}
                                     className="flex flex-col gap-[24px]"
                                 >
-                                    <div className="flex items-center gap-[12px] pl-[24px]">
+                                    <div className="flex items-center gap-[12px] pl-[8px]">
                                         <div
                                             className={`w-[15px] h-[15px] ${
                                                 colors[group?.[0]]
@@ -61,8 +80,7 @@ export default function Home() {
                                     </div>
                                 </div>
                             )
-                        }
-                    )}
+                        })}
                 </div>
             </div>
         </>

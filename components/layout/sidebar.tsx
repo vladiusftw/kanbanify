@@ -21,9 +21,11 @@ const Sidebar = () => {
         (state) => state?.persistedReducer.boards
     )
     const dispatch = useDispatch()
+    console.log(boards)
+
     return (
         <div
-            className={`top-0 fixed md:static h-full  overflow-hidden  transition-width duration-[0.5s] ease-linear   md:max-w-[280px] lg:max-w-[300px] ${
+            className={`top-0 fixed md:static h-full  overflow-hidden  transition-width duration-300 ease-linear   md:max-w-[280px] lg:max-w-[300px] ${
                 isOpen ? ' w-screen md:w-full' : ' w-0'
             } `}
         >
@@ -36,9 +38,10 @@ const Sidebar = () => {
                     </h2>
 
                     <div className="w-full flex flex-col h-full overflow-y-auto overflow-x-hidden  pe-[24px] ">
-                        {boards?.map((board: Board, index: number) => {
+                        {boards?.map((board: Board) => {
                             return (
                                 <BoardItem
+                                    key={board?.title}
                                     isActive={board?.title === currBoard}
                                     name={board?.title}
                                     onClick={() =>

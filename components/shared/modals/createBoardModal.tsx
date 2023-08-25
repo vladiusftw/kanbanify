@@ -1,24 +1,35 @@
 'use client'
-import React, { useRef } from 'react'
-import Modal from './modal'
+import React, { useEffect, useRef } from 'react'
+import Modal from '../modal'
 import { useAppDispatch, useAppSelector } from '@/store/store'
-import { closeCreateBoard } from '@/store/slices/modalsReducer'
-import { addBoard, getItems } from '@/store/slices/itemsReducer'
-import LabelInput from './labelInput'
+import { closeCreateBoard, closeEditBoard } from '@/store/slices/modalsReducer'
+import { addBoard, getItems, updateBoard } from '@/store/slices/itemsReducer'
+import LabelInput from '../labelInput'
 
 type Props = {}
 
 const CreateBoardModal = (props: Props) => {
-    const { createBoardOpen } = useAppSelector((state) => state.modals)
+    const { createBoardOpen, editBoardOpen } = useAppSelector(
+        (state) => state.modals
+    )
     const { currBoard, boards } = useAppSelector(
         (state) => state.persistedReducer.boards
     )
     const dispatch = useAppDispatch()
     const inputRef = useRef<HTMLInputElement>(null)
+    useEffect(() => {
+        console.log(editBoardOpen)
+        if (!editBoardOpen) inputRef!.current!.value = ''
+        else inputRef!.current!.value = currBoard
+    }, [editBoardOpen, createBoardOpen, currBoard])
+
     return (
         <Modal
-            isOpen={createBoardOpen}
-            onBackDropPress={() => dispatch(closeCreateBoard())}
+            isOpen={createBoardOpen || editBoardOpen}
+            onBackDropPress={() => {
+                dispatch(closeCreateBoard())
+                dispatch(closeEditBoard())
+            }}
         >
             <div
                 className="bg-white dark:bg-[#2B2C37] max-w-[480px] w-full flex flex-col items-start gap-[24px] rounded-[6px] p-[32px] hover:cursor-default"
@@ -27,11 +38,14 @@ const CreateBoardModal = (props: Props) => {
                     e.preventDefault()
                 }}
             >
-                <p className="text-[18px] font-bold">Add New Board</p>
+                <p className="text-[18px] font-bold">{`${
+                    editBoardOpen ? 'Edit Board' : 'Add New Board'
+                }`}</p>
                 <LabelInput
                     inputRef={inputRef}
                     label="Board Name"
                     placeholder="e.g. Web Design"
+                    type="input"
                 />
                 <button
                     className="bg-[#635FC7] w-full py-[8px] text-[13px] font-bold rounded-[20px]"
@@ -48,14 +62,17 @@ const CreateBoardModal = (props: Props) => {
                         ) {
                             alert('Board Name already exists!')
                         } else if (inputRef?.current) {
-                            dispatch(addBoard(inputRef.current.value))
+                            if (editBoardOpen) {
+                                dispatch(updateBoard(inputRef.current.value))
+                            } else dispatch(addBoard(inputRef.current.value))
                             if (currBoard === '')
                                 dispatch(getItems(inputRef?.current?.value))
                             dispatch(closeCreateBoard())
+                            dispatch(closeEditBoard())
                         }
                     }}
                 >
-                    Create New Board
+                    {`${editBoardOpen ? 'Save Changes' : 'Create New Board'}`}
                 </button>
             </div>
         </Modal>

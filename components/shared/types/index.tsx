@@ -1,3 +1,5 @@
+export type ToDoColumn = 'todo' | 'doing' | 'done'
+
 export type Subtask = {
     title: string
     completed: boolean
@@ -5,8 +7,10 @@ export type Subtask = {
 
 export type ToDo = {
     title: string
+    desc: string
     subtasks: Subtask[]
-    status: 'todo' | 'doing' | 'done'
+    status: ToDoColumn
+    id: number
 }
 
 export type Column = {
