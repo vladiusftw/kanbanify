@@ -24,19 +24,17 @@ export const metadata: Metadata = {
         'Team collaboration',
         'Task tracking',
     ],
+    viewport: {
+        width: 'device-width',
+        initialScale: 1,
+        maximumScale: 1,
+    },
     openGraph: {
         type: 'website',
         url: process.env.VERCEL_URL ?? '',
         title: 'Kanbanify - Todo List and Kanban Board Website',
         description:
             'Kanbanify is a powerful online platform designed to streamline task management, boost productivity, and enhance collaboration through its intuitive todo list and Kanban board features. Stay organized, prioritize tasks, and achieve your goals seamlessly with Kanbanify.',
-        images: [
-            {
-                url: '/opengraph-image.png',
-                width: 150,
-                height: 25,
-            },
-        ],
     },
 }
 
