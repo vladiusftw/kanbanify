@@ -6,8 +6,37 @@ import Sidebar from '@/components/layout/sidebar'
 import Providers from './providers'
 
 export const metadata: Metadata = {
-    title: 'Kanbanify',
-    description: "Where all the ToDo's can be placed!",
+    title: 'Kanbanify - Todo List and Kanban Board Website',
+    description:
+        'Kanbanify is a powerful online platform designed to streamline task management, boost productivity, and enhance collaboration through its intuitive todo list and Kanban board features. Stay organized, prioritize tasks, and achieve your goals seamlessly with Kanbanify.',
+    keywords: [
+        'Kanbanify',
+        'Todo list',
+        'Kanban board',
+        'Task management',
+        'Productivity',
+        'Collaboration',
+        'Project management',
+        'Task prioritization',
+        'Workflow optimization',
+        'Project planning',
+        'Online task manager',
+        'Team collaboration',
+        'Task tracking',
+    ],
+    openGraph: {
+        type: 'website',
+        //   url: 'https://www.kanbanify.com',
+        title: 'Kanbanify - Todo List and Kanban Board Website',
+        description:
+            'Kanbanify is a powerful online platform designed to streamline task management, boost productivity, and enhance collaboration through its intuitive todo list and Kanban board features. Stay organized, prioritize tasks, and achieve your goals seamlessly with Kanbanify.',
+        images: [
+            {
+                url: '@/public/logo.svg',
+                alt: 'Kanbanify Logo',
+            },
+        ],
+    },
 }
 
 export default function RootLayout({
