@@ -42,7 +42,6 @@ const AddTaskModal = (props: Props) => {
         const tempSet = Array.from(
             new Set(subtasks?.map((item: Subtask) => item?.title))
         )
-        console.log(tempSet?.length)
 
         if (tempSet?.length !== subtasks?.length) {
             alert('Subtasks must be unique')

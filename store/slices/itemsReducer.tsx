@@ -34,8 +34,6 @@ const itemsReducer = createSlice({
             if (currBoardIndex !== -1) {
                 const currBoard = state.boards[currBoardIndex]
                 action.payload.id = state.idCount++
-                console.log('payload', action.payload)
-
                 currBoard?.items?.push(action?.payload)
                 const newBoards = [...state.boards]
                 newBoards[currBoardIndex] = currBoard

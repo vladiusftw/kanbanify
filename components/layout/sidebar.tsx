@@ -21,7 +21,6 @@ const Sidebar = () => {
         (state) => state?.persistedReducer.boards
     )
     const dispatch = useDispatch()
-    console.log(boards)
 
     return (
         <div

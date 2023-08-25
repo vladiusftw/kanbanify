@@ -18,7 +18,6 @@ const CreateBoardModal = (props: Props) => {
     const dispatch = useAppDispatch()
     const inputRef = useRef<HTMLInputElement>(null)
     useEffect(() => {
-        console.log(editBoardOpen)
         if (!editBoardOpen) inputRef!.current!.value = ''
         else inputRef!.current!.value = currBoard
     }, [editBoardOpen, createBoardOpen, currBoard])
