@@ -35,6 +35,14 @@ export const metadata: Metadata = {
         title: 'Kanbanify - Todo List and Kanban Board Website',
         description:
             'Kanbanify is a powerful online platform designed to streamline task management, boost productivity, and enhance collaboration through its intuitive todo list and Kanban board features. Stay organized, prioritize tasks, and achieve your goals seamlessly with Kanbanify.',
+        images: [
+            {
+                url: '/logo.png',
+                alt: 'Kanbanify Logo',
+                width: 1200,
+                height: 630,
+            },
+        ],
     },
 }
 
