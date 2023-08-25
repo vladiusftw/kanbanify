@@ -39,8 +39,6 @@ export const metadata: Metadata = {
             {
                 url: '/logo.png',
                 alt: 'Kanbanify Logo',
-                width: 1200,
-                height: 630,
             },
         ],
     },
