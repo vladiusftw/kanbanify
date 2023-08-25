@@ -32,7 +32,7 @@ export const metadata: Metadata = {
             'Kanbanify is a powerful online platform designed to streamline task management, boost productivity, and enhance collaboration through its intuitive todo list and Kanban board features. Stay organized, prioritize tasks, and achieve your goals seamlessly with Kanbanify.',
         images: [
             {
-                url: '@/public/logo.svg',
+                url: '/logo.svg',
                 alt: 'Kanbanify Logo',
             },
         ],
