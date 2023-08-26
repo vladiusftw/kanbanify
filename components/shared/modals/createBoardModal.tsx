@@ -64,8 +64,7 @@ const CreateBoardModal = (props: Props) => {
                             if (editBoardOpen) {
                                 dispatch(updateBoard(inputRef.current.value))
                             } else dispatch(addBoard(inputRef.current.value))
-                            if (currBoard === '')
-                                dispatch(getItems(inputRef?.current?.value))
+                            dispatch(getItems(inputRef?.current?.value))
                             dispatch(closeCreateBoard())
                             dispatch(closeEditBoard())
                         }
