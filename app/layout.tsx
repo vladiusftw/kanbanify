@@ -53,7 +53,7 @@ export default function RootLayout({
         <html lang="en">
             <body className="bg-white dark:bg-[#20212C] text-[#000112] dark:text-white relative">
                 <Providers>
-                    <div className="h-screen flex flex-col w-full relative">
+                    <div className="h-screen flex flex-col w-full relative overflow-hidden">
                         <Navbar />
                         <div className="flex h-full w-full overflow-hidden">
                             <Sidebar />
