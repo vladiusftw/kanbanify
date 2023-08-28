@@ -33,7 +33,7 @@ const Sidebar = () => {
             >
                 <div className="flex flex-col gap-[20px] h-full w-full pb-[24px] overflow-hidden">
                     <h2 className="uppercase text-[#828FA3] text-[12px] font-[700] ps-[34px] ">
-                        {'all boards (8)'}
+                        {`all boards (${boards?.length})`}
                     </h2>
 
                     <div className="w-full flex flex-col h-full overflow-y-auto overflow-x-hidden  pe-[24px] ">
