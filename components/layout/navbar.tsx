@@ -8,13 +8,7 @@ import DotMenu from '../shared/icons/dotMenu'
 import LightLogo from '../shared/icons/lightLogo'
 import LightLogoMobile from '../shared/icons/lightLogoMobile'
 import { useAppDispatch, useAppSelector } from '@/store/store'
-import {
-    closeShowTask,
-    openAddTask,
-    openCreateBoard,
-    openEditBoard,
-    openEditTask,
-} from '@/store/slices/modalsReducer'
+import { openAddTask, openEditBoard } from '@/store/slices/modalsReducer'
 import { deleteBoard, setCurrItem } from '@/store/slices/itemsReducer'
 import Popover from '../shared/popover'
 
@@ -52,8 +46,13 @@ const Navbar = (props: Props) => {
                         className="hidden md:flex rounded-[24px] bg-[#635FC7] py-[15px] px-[24px] text-[15px] font-[700] text-white"
                         onClick={(e) => {
                             e.preventDefault()
-                            dispatch(setCurrItem(null!))
-                            dispatch(openAddTask())
+                            if (currBoard != '') {
+                                dispatch(setCurrItem(null!))
+                                dispatch(openAddTask())
+                            } else
+                                alert(
+                                    'Open the sidebar and create/choose a board'
+                                )
                         }}
                     >
                         {'+ Add New Task'}
@@ -62,8 +61,13 @@ const Navbar = (props: Props) => {
                         className="flex md:hidden rounded-[24px] bg-[#635FC7] py-[10px] px-[18px]"
                         onClick={(e) => {
                             e.preventDefault()
-                            dispatch(setCurrItem(null!))
-                            dispatch(openAddTask())
+                            if (currBoard != '') {
+                                dispatch(setCurrItem(null!))
+                                dispatch(openAddTask())
+                            } else
+                                alert(
+                                    'Open the sidebar and create/choose a board'
+                                )
                         }}
                     >
                         <Add />
